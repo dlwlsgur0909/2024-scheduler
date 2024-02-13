@@ -1,11 +1,13 @@
 package com.example.scheduler.entity;
 
-import com.example.scheduler.util.audit.AuditEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
@@ -23,5 +25,11 @@ public class Member {
     private String memberPassword;
     private String memberNickname;
     private String memberActive;
+    private String createdBy;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
+    private String updatedBy;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updatedAt;
 
 }
