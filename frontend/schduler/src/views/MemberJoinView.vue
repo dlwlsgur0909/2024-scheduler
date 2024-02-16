@@ -19,15 +19,26 @@ function registerMember() {
 
   axios.post(`http://localhost:8080/members`, registerData)
   .then((res) => {
-    console.log(res);
+    if(res.status === 200) {
+        window.alert('회원가입 완료!');
+
+        reset();
+    }
   })
   .catch((error) => {
-    console.log(error);
+    if(error.response.data === 'Duplicate Email') {
+        window.alert('중복된 이메일입니다.');
+    }
   })
 
 }
 
-
+function reset() {
+    memberName.value = '';
+    memberEmail.value = '';
+    memberPassword.value = '';
+    memberNickname.value = '';
+}
 
 
 </script>
