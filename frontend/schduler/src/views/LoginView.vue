@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 
 const memberEmail = ref('');
 const memberPassword = ref('');
@@ -14,11 +15,17 @@ function login() {
 
     axios.post('http://localhost:8080/members/login', loginData)
     .then((res) => {
-        console.log(res);
+        if(res.status === 200) {
+            window.alert('환영합니다!');
+            console.log(res);
+        }
     })
     .catch((error) => {
-        console.log(error);
-    })
+        
+        if(error.response.data === 'Login Failed') {
+            window.alert('이메일 혹은 비밀번호를 확인해주세요')
+        }
+   })
 
 }
 
@@ -38,7 +45,7 @@ function login() {
       </div>
       
       <div class="footer">
-                <button type="button" @click="registerMember()">
+                <button type="button" @click="login()">
                     로그인
                 </button>
       </div>
