@@ -9,9 +9,11 @@ const memberPassword = ref('');
 function login() {
 
     const loginData = {
-        memberEmail,
-        memberPassword
+        memberEmail: memberEmail.value,
+        memberPassword: memberPassword.value
     };
+
+    console.log(loginData);
 
     axios.post('http://localhost:8080/members/login', loginData)
     .then((res) => {
