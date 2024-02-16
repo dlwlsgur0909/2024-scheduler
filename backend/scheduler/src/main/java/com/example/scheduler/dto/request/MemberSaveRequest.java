@@ -24,12 +24,12 @@ public class MemberSaveRequest {
     @NotBlank
     private String memberNickname;
 
-    public Member toEntity() {
+    public Member toEntity(String encodedPassword) {
 
         return Member.builder()
                 .memberName(memberName)
                 .memberEmail(memberEmail)
-                .memberPassword(memberPassword)
+                .memberPassword(encodedPassword)
                 .memberNickname(memberNickname)
                 .memberActive("ACTIVE")
                 .createdBy(memberName)
